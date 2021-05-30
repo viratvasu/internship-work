@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            color: rgb(32, 30, 30);
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        table {
+            margin: 10px auto;
+            background-color: #fff;
+            box-shadow: 0 0 5px grey;
+        }
+
+        table tr:hover {
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+
+        table tr th {
+            padding: 10px;
+            color: blue;
+            font-size: 1.1rem;
+        }
+
+        table tr td {
+            padding: 10px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    {% if error %}
+    <p style="text-align: center;color:red;padding:20px 0;font-size: 1.5rem;">{{error}}</p>
+    {% endif %}
+    {% if student_obj %}
+    <div class="searc-results">
+        <h2>Results for Id <span style="color:blue">{{student_obj.id}}</span></h2>
+        <table>
+            <tr>
+                <th>Full Name </th>
+                <td>:</td>
+                <td>{{student_obj}}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>:</td>
+                <td>{{student_obj.email}}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>:</td>
+                <td>{{student_obj.gender}}</td>
+            </tr>
+            <tr>
+                <th>School Name</th>
+                <td>:</td>
+                {% if student_obj.school.name|length > 0 %}
+                <td>{{ student_obj.school.name }}</td>
+                {% else %}
+                <td>Not Found</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <th>School Phone</th>
+                <td>:</td>
+                {% if student_obj.school.phone|length > 0 %}
+                <td>{{ student_obj.school.phone }}</td>
+                {% else %}
+                <td>Not Found</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <th>Book</th>
+                <td>:</td>
+                {% if student_obj.book.title|length > 0 %}
+                <td>{{ student_obj.book.title }}</td>
+                {% else %}
+                <td>Not Found</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <th>Book pages</th>
+                <td>:</td>
+                {% if student_obj.book.number_of_pages %}
+                <td>{{ student_obj.book.number_of_pages }}</td>
+                {% else %}
+                <td>Not Found</td>
+                {% endif %}
+            </tr>
+        </table>
+    </div>
+    {% endif %}
+    <!-- <p>Student Full Name : {{student_obj}}</p>
+    <p>Student Email : {{student_obj.email}}</p>
+    <p>Student Gender : {{student_obj.gender}}</p>
+    <p> Student School name : {{student_obj.school.name}}</p>
+    <p>Student School Phone : {{student_obj.school.phone}}</p>
+    <p>Book readed by student : {{student_obj.book.title}}</p>
+    <p>No of pages Book readed by student : {{student_obj.book.number_of_pages}}</p> -->
+
+</body>
+
+</html>
